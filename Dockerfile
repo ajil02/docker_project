@@ -10,8 +10,8 @@ COPY . /app
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose the Flask port (5000)
+# Expose the Flask port (8080)
 EXPOSE 8080
 
-# Define the command to run the app
-CMD ["python", "exp3.py"]
+# Define the command to run the app using Gunicorn for production
+CMD ["gunicorn", "-b", "0.0.0.0:8080", "exp3:app"]
